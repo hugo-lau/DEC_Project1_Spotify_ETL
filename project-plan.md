@@ -60,63 +60,61 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 ## Phase 1 - Project Planning
 
-| Task                                  | Due Date   | Status   |
-|---------------------------------------|------------|----------|
-| Define Dataset                        | 09-27-2024 |          |
-| Setup Git Collaboration               | 09-27-2024 |          |
-| • Verify Git pull, branch, request    | 09-27-2024 |          |
-| Complete Project Plan Template        | 09-27-2024 |          |
-| • Submit Draft Project Schedule       | 09-26-2024 |          |
-| • Review Project Plan                 | 09-27-2024 |          |
+| Task                                  | Due Date   | Status   | Comments
+|---------------------------------------|------------|----------|---------
+| Define Dataset                        | 09-27-2024 |          | 
+| Setup Git Collaboration               | 09-27-2024 |          | 
+| • Verify Git pull, branch, request    | 09-27-2024 |          | 
+| Complete Project Plan Template        | 09-27-2024 |          | 
+| • Submit Draft Project Schedule       | 09-26-2024 |          | 
+| • Review Project Plan                 | 09-27-2024 |          | 
 
 ## Phase 2 - MVP (Extract, Transform, Load, Docker)
 
-| Task                                  | Due Date   | Status   |
-|---------------------------------------|------------|----------|
-| Extract Data                          | 09-28-2024 |          |
-| • Static Extraction                   | 09-28-2024 |          |
-| • Live Extraction                     | 09-28-2024 |          |
-| • Full Extract                        | 09-28-2024 |          |
-| • Incremental Extract                 | 09-28-2024 |          |
-| Transform Data                        | 09-30-2024 |          |
-| • 3 Transformation Techniques         | 09-30-2024 |          |
-| • 5 Transformation Techniques         | 09-30-2024 |          |
-| • 7 Transformation Techniques         | 09-30-2024 |          |
-| Load Data                             | 10-01-2024 |          |
-| • Full Load                           | 10-01-2024 |          |
-| • Incremental Load                    | 10-01-2024 |          |
-| • Upsert Load                         | 10-01-2024 |          |
+| Task                                  | Due Date   | Status   | Comments
+|---------------------------------------|------------|----------|---------
+| Extract Data                          | 09-28-2024 |          | 
+| • Static Extraction                   | 09-28-2024 |          | 
+| • Live Extraction                     | 09-28-2024 |          | 
+| • Full Extract                        | 09-28-2024 |          | 
+| • Incremental Extract                 | 09-28-2024 |          | 
+| Transform Data                        | 09-30-2024 |          | 
+| • 3 Transformation Techniques         | 09-30-2024 |          | 
+| • 5 Transformation Techniques         | 09-30-2024 |          | 
+| • 7 Transformation Techniques         | 09-30-2024 |          | 
+| Load Data                             | 10-01-2024 |          | 
+| • Full Load                           | 10-01-2024 |          | 
+| • Incremental Load                    | 10-01-2024 |          | 
+| • Upsert Load                         | 10-01-2024 |          | 
 
 ## Phase 3 - Build Docker Image and Run on AWS
 
-| Task                                  | Due Date   | Status   |
-|---------------------------------------|------------|----------|
-| Build and Run Docker Locally          | 10-01-2024 |          |
-| • Build Docker image                  | 10-01-2024 |          |
-| • Run Docker container                | 10-01-2024 |          |
-| Deploy Docker Container to AWS        | 10-03-2024 |          |
-| • RDS - screenshot of dataset         | 10-03-2024 |          |
-| • ECR - screenshot of image           | 10-03-2024 |          |
-| • S3 - screenshot of 'env' file       | 10-03-2024 |          |
-| • IAM Role - screenshot               | 10-03-2024 |          |
+| Task                                  | Due Date   | Status   | Comments
+|---------------------------------------|------------|----------|---------
+| Build and Run Docker Locally          | 10-01-2024 |          | 
+| • Build Docker image                  | 10-01-2024 |          | 
+| • Run Docker container                | 10-01-2024 |          | 
+| Deploy Docker Container to AWS        | 10-03-2024 |          | 
+| • RDS - screenshot of dataset         | 10-03-2024 |          | 
+| • ECR - screenshot of image           | 10-03-2024 |          | 
+| • S3 - screenshot of 'env' file       | 10-03-2024 |          | 
+| • IAM Role - screenshot               | 10-03-2024 |          | 
 
 ## Phase 4 - Testing/Logging, Documentation/Presentation
 
-| Task                                  | Due Date   | Status   |
-|---------------------------------------|------------|----------|
-| Write pipeline logs to database       | 10-04-2024 |          |
-| Implement unit tests                  | 10-05-2024 |          |
-| Documentation                         | 10-07-2024 |          |
-| • Python docstrings and comments      | 10-07-2024 |          |
-| • Project markdown documentation      | 10-07-2024 |          |
-| Presentation                          | 10-07-2024 |          |
-| • Project context and goals           | 10-07-2024 |          |
-| • Datasets selected                   | 10-07-2024 |          |
-| • Solution architecture diagram       | 10-07-2024 |          |
-| • ETL/ELT techniques applied          | 10-07-2024 |          |
-| • Final dataset and demo              | 10-07-2024 |          |
-| • Lessons learned                     | 10-07-2024 |          |
-
-
+| Task                                  | Due Date   | Status   | Comments
+|---------------------------------------|------------|----------|---------
+| Write pipeline logs to database       | 10-04-2024 |          | 
+| Implement unit tests                  | 10-05-2024 |          | 
+| Documentation                         | 10-07-2024 |          | 
+| • Python docstrings and comments      | 10-07-2024 |          | 
+| • Project markdown documentation      | 10-07-2024 |          | 
+| Presentation                          | 10-07-2024 |          | 
+| • Project context and goals           | 10-07-2024 |          | 
+| • Datasets selected                   | 10-07-2024 |          | 
+| • Solution architecture diagram       | 10-07-2024 |          | 
+| • ETL/ELT techniques applied          | 10-07-2024 |          | 
+| • Final dataset and demo              | 10-07-2024 |          | 
+| • Lessons learned                     | 10-07-2024 |          | 
 
 ![project1_schedule](images/project1_schedule.png)
