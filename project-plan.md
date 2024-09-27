@@ -25,10 +25,6 @@ Example:
 
 ## Source datasets
 
-What datasets are you sourcing from? How frequently are the source datasets updating?
-
-Example:
-
 | Source Name           | Source Type | Source Documentation                       |
 |----------------------|-------------|-------------------------------------------|
 | Spotify New Releases  | REST API   | [Spotify API Documentation](https://developer.spotify.com/documentation/web-api/) |
@@ -37,24 +33,29 @@ The Spotify API updates with new releases daily, so we will schedule data extrac
 
 ## Solution architecture
 
-How are we going to get data flowing from source to serving? What components and services will we combine to implement the solution? How do we automate the entire running of the solution?
+Following is the descriptive solution architecture diagram for implementing ETL on Spotify API
 
-- What data extraction patterns are you going to be using?
-- What data loading patterns are you going to be using?
-- What data transformation patterns are you going to be performing?
+![images/Solution_Architecture.png](images/Solution_Architecture.png)
 
-We recommend using a diagramming tool like [draw.io](https://draw.io/) to create your architecture diagram.
+1. Python & Pandas was used for:
+    1. Extracting the data about artists, songs, albums, new releases. Pipeline is set to run on a regular schedule
+    2. Transforming data -> drop unnecessary columns, rename columns, and create a calendar (dates) dataframe that merges all the dates in 2023 and 2024 with the holidays information from the csv file.
+    3. Load data to our postgres database.
 
-Here is a sample solution architecture diagram:
+2. PostgreSQL DBMS was used for storing all our data: artists, songs, ids
 
-![images/sample-solution-architecture-diagram.png](images/sample-solution-architecture-diagram.png)
+3. AWS RDS was used for hosting and managing our postgres database.
+
+4. SQL was used for creating views off of the data that is loaded
+
+5. Docker was used to containerize our pipeline
+
+6. ECR was used to host our docker container
+
+7. ECS was used to run the docker container
+
+8. S3 was used to store the .env file.
 
 ## Breakdown of tasks
 
-How is your project broken down? Who is doing what?
-
-We recommend using a free Task board such as [Trello](https://trello.com/). This makes it easy to assign and track tasks to each individual.
-
-Example:
-
-![images/kanban-task-board.png](images/kanban-task-board.png)
+![project1_schedule](images/project1_schedule.png)
