@@ -58,11 +58,6 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 ## Breakdown of tasks
 
-# Project Task List
-
-## Phase 1 - Project Planning
-# Project Task List
-
 ## Phase 1 - Project Planning
 
 | Task                                  | Due Date   | Status   |
@@ -79,8 +74,8 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 | Task                                  | Due Date   | Status   |
 |---------------------------------------|------------|----------|
 | Extract Data                          | 09-28-2024 |          |
-| • Static Extraction                   |            |          |
-| • Live Extraction                     |            |          |
+| • Static Extraction                   | 09-28-2024 |          |
+| • Live Extraction                     | 09-28-2024 |          |
 | • Full Extract                        | 09-28-2024 |          |
 | • Incremental Extract                 | 09-28-2024 |          |
 | Transform Data                        | 09-30-2024 |          |
@@ -121,5 +116,7 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 | • ETL/ELT techniques applied          | 10-07-2024 |          |
 | • Final dataset and demo              | 10-07-2024 |          |
 | • Lessons learned                     | 10-07-2024 |          |
+
+
 
 ![project1_schedule](images/project1_schedule.png)
