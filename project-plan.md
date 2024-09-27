@@ -39,7 +39,7 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 1. Python & Pandas was used for:
     1. Extracting the data about artists, songs, albums, new releases. Pipeline is set to run on a regular schedule
-    2. Transforming data -> drop unnecessary columns, rename columns, and create a calendar (dates) dataframe that merges all the dates in 2023 and 2024 with the holidays information from the csv file.
+    2. Transforming data -> drop unnecessary columns, rename columns.
     3. Load data to our postgres database.
 
 2. PostgreSQL DBMS was used for storing all our data: artists, songs, ids
