@@ -62,12 +62,12 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 | Task                                  | Due Date   | Status   |
 |---------------------------------------|------------|----------|
-| Define Dataset                        | 09-27-2024 |          |
-| Setup Git Collaboration               | 09-27-2024 |          |
-| • Verify Git pull, branch, request    | 09-27-2024 |          |
-| Complete Project Plan Template        | 09-27-2024 |          |
-| • Submit Draft Project Schedule       | 09-26-2024 |          |
-| • Review Project Plan                 | 09-27-2024 |          |
+| Define Dataset                        | 09-27-2024 | Complete |
+| Setup Git Collaboration               | 09-27-2024 | Complete |
+| • Verify Git pull, branch, request    | 09-27-2024 | Complete |
+| Complete Project Plan Template        | 09-27-2024 | Complete |
+| • Submit Draft Project Schedule       | 09-27-2024 | Complete |
+| • Review Project Plan                 | 09-27-2024 | Complete |
 
 ## Phase 2 - MVP (Extract, Transform, Load, Docker)
 
