@@ -61,63 +61,65 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 # Project Task List
 
 ## Phase 1 - Project Planning
+# Project Task List
 
-| Task                                  | Status   | Start Date | Due Date  | Assigned to          |
-|---------------------------------------|----------|------------|-----------|----------------------|
-| Define Dataset                        |          | 09-26-2024 | 09-27-2024| Anyone               |
-| Setup Git Collaboration               |          | 09-26-2024 | 09-27-2024| Anyone               |
-| • Team members verify Git pull, branch, request works | | 09-26-2024 | 09-27-2024| Anyone |
-| Complete Project Plan Template        |          | 09-26-2024 | 09-27-2024| Veda Bommareddy       |
-| • Submit Draft Project Schedule       |          | 09-26-2024 | 09-26-2024| Hugo Lau              |
-| • Review project plan template        |          | 09-26-2024 | 09-27-2024| Rob Casey, Hugo Lau   |
+## Phase 1 - Project Planning
+
+| Task                                  | Due Date   | Status   |
+|---------------------------------------|------------|----------|
+| Define Dataset                        | 09-27-2024 |          |
+| Setup Git Collaboration               | 09-27-2024 |          |
+| • Verify Git pull, branch, request    | 09-27-2024 |          |
+| Complete Project Plan Template        | 09-27-2024 |          |
+| • Submit Draft Project Schedule       | 09-26-2024 |          |
+| • Review Project Plan                 | 09-27-2024 |          |
 
 ## Phase 2 - MVP (Extract, Transform, Load, Docker)
 
-| Task                                  | Status   | Start Date | Due Date  | Assigned to          |
-|---------------------------------------|----------|------------|-----------|----------------------|
-| Extract Data                          |          | 09-26-2024 | 09-28-2024| Anyone               |
-| • Static Extraction                   |          |            |           | Anyone               |
-| • Live Extraction                     |          |            |           | Anyone               |
-| • Full Extract                        |          | 09-26-2024 | 09-28-2024| Anyone               |
-| • Incremental Extract                 |          | 09-26-2024 | 09-28-2024| Anyone               |
-| Transform Data                        |          | 09-28-2024 | 09-30-2024| Anyone               |
-| • 3 Transformation Techniques         |          | 09-28-2024 | 09-30-2024| Anyone               |
-| • 5 Transformation Techniques         |          | 09-28-2024 | 09-30-2024| Anyone               |
-| • 7 Transformation Techniques         |          | 09-28-2024 | 09-30-2024| Anyone               |
-| Load Data                             |          | 09-28-2024 | 10-01-2024| Anyone               |
-| • Load Data → Full Load               |          | 09-30-2024 | 10-01-2024| Anyone               |
-| • Load Data → Incremental Load        |          | 09-30-2024 | 10-01-2024| Anyone               |
-| • Load Data → Upsert Load             |          | 09-30-2024 | 10-01-2024| Anyone               |
+| Task                                  | Due Date   | Status   |
+|---------------------------------------|------------|----------|
+| Extract Data                          | 09-28-2024 |          |
+| • Static Extraction                   |            |          |
+| • Live Extraction                     |            |          |
+| • Full Extract                        | 09-28-2024 |          |
+| • Incremental Extract                 | 09-28-2024 |          |
+| Transform Data                        | 09-30-2024 |          |
+| • 3 Transformation Techniques         | 09-30-2024 |          |
+| • 5 Transformation Techniques         | 09-30-2024 |          |
+| • 7 Transformation Techniques         | 09-30-2024 |          |
+| Load Data                             | 10-01-2024 |          |
+| • Full Load                           | 10-01-2024 |          |
+| • Incremental Load                    | 10-01-2024 |          |
+| • Upsert Load                         | 10-01-2024 |          |
 
 ## Phase 3 - Build Docker Image and Run on AWS
 
-| Task                                  | Status   | Start Date | Due Date  | Assigned to          |
-|---------------------------------------|----------|------------|-----------|----------------------|
-| Build and Run Docker Locally          |          | 10-01-2024 | 10-01-2024| Anyone               |
-| • Build a docker image using Dockerfile |          | 10-01-2024 | 10-01-2024| Anyone               |
-| • Docker container runs locally       |          | 10-01-2024 | 10-01-2024| Anyone               |
-| Deploy Docker Container to AWS        |          | 10-01-2024 | 10-03-2024| Anyone               |
-| • Relational Database Service (RDS) - screenshot of dataset in target storage | | 10-01-2024 | 10-03-2024 | Anyone |
-| • Elastic Container Registry (ECR) - screenshot of image in ECR | | 10-01-2024 | 10-03-2024 | Anyone |
-| • S3 for 'env' file - screenshot of 'env' file in S3 | | 10-01-2024 | 10-03-2024 | Anyone |
-| • IAM Role - screenshot of created role | | 10-01-2024 | 10-03-2024 | Anyone |
+| Task                                  | Due Date   | Status   |
+|---------------------------------------|------------|----------|
+| Build and Run Docker Locally          | 10-01-2024 |          |
+| • Build Docker image                  | 10-01-2024 |          |
+| • Run Docker container                | 10-01-2024 |          |
+| Deploy Docker Container to AWS        | 10-03-2024 |          |
+| • RDS - screenshot of dataset         | 10-03-2024 |          |
+| • ECR - screenshot of image           | 10-03-2024 |          |
+| • S3 - screenshot of 'env' file       | 10-03-2024 |          |
+| • IAM Role - screenshot               | 10-03-2024 |          |
 
 ## Phase 4 - Testing/Logging, Documentation/Presentation
 
-| Task                                  | Status   | Start Date | Due Date  | Assigned to          |
-|---------------------------------------|----------|------------|-----------|----------------------|
-| Write pipeline metadata logs to a database table | | 10-03-2024 | 10-04-2024 | Anyone |
-| Implement unit tests using PyTest or similar | | 10-03-2024 | 10-05-2024 | Anyone |
-| Documentation                         |          | 10-03-2024 | 10-07-2024| Anyone               |
-| • Code documentation using Python docstrings and comments where reasonable | | 10-03-2024 | 10-07-2024 | Anyone |
-| • Markdown documentation explaining the project context, architecture, installation/running instructions | | 10-03-2024 | 10-07-2024 | Anyone |
-| Presentation                          |          | 10-07-2024 | 10-07-2024| Anyone               |
-| • Project context and goals           |          | 10-07-2024 | 10-07-2024| Anyone               |
-| • Datasets selected                   |          | 10-07-2024 | 10-07-2024| Anyone               |
-| • Solution architecture diagram using draw.io or similar | | 10-07-2024 | 10-07-2024 | Anyone |
-| • ELT/ETL techniques applied          |          | 10-07-2024 | 10-07-2024| Anyone               |
-| • Final dataset and demo run (if possible) |       | 10-07-2024 | 10-07-2024| Anyone               |
-| • Lessons learnt                      |          | 10-07-2024 | 10-07-2024| Anyone               |
-
+| Task                                  | Due Date   | Status   |
+|---------------------------------------|------------|----------|
+| Write pipeline logs to database       | 10-04-2024 |          |
+| Implement unit tests                  | 10-05-2024 |          |
+| Documentation                         | 10-07-2024 |          |
+| • Python docstrings and comments      | 10-07-2024 |          |
+| • Project markdown documentation      | 10-07-2024 |          |
+| Presentation                          | 10-07-2024 |          |
+| • Project context and goals           | 10-07-2024 |          |
+| • Datasets selected                   | 10-07-2024 |          |
+| • Solution architecture diagram       | 10-07-2024 |          |
+| • ETL/ELT techniques applied          | 10-07-2024 |          |
+| • Final dataset and demo              | 10-07-2024 |          |
+| • Lessons learned                     | 10-07-2024 |          |
 
 ![project1_schedule](images/project1_schedule.png)
