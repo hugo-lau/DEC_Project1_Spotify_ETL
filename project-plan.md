@@ -56,6 +56,10 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 8. S3 was used to store the .env file.
 
+
+#Initial ER Diagram of the database
+![images/ER_diagram.png](images/ER_Diagram.png)
+
 ## Breakdown of tasks
 
 ## Phase 1 - Project Planning

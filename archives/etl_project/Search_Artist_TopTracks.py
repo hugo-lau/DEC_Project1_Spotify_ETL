@@ -3,12 +3,18 @@ import os
 import base64
 from requests import post, get
 import json
+import pandas as pd
 
 
 load_dotenv()
 
 client_id = os.getenv("CLIENT_ID")
 client_secret = os.getenv("CLIENT_SECRET")
+
+#global variables
+url = 'https://api.spotify.com/v1/'
+
+
 
 #get access token
 def get_token():
@@ -50,18 +56,40 @@ def search_for_artist(token, artist_name):
 
 # https://developer.spotify.com/documentation/web-api/reference/get-an-artists-top-tracks
 def get_songs_by_artist(token, artist_id):
-    url = f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks?market=US"
+    url = f"get_all_categories/artists/{artist_id}/top-tracks?market=US"
     headers = get_auth_header(token)
     result = get(url, headers = headers)
     json_result = json.loads(result.content)["tracks"]
     return json_result
 
+
+# def get_all_categories(token):
+
+#     url = 'https://api.spotify.com/v1/'
+#     headers = get_auth_header(token)
+#     query ='browse/categories'
+#     query_url=f'{url}{query}'
+#     print(query_url)
+#     result = get(query_url, headers=headers)
+
+#     # if(result.status_code == 200):
+#     #     print(result.json())
+#     json_result = json.loads(result.content)['categories']['items']
+#     df_json_result = pd.json_normalize(json_result)
+#     print(df_json_result.columns)
+
+#     print(df_json_result['name'])
+
 token = get_token()
 result = search_for_artist(token, "ACDC")
-artist_id = result["id"]
-songs = get_songs_by_artist(token, artist_id)
-print(songs)
+print(result)
+# artist_id = result["id"]
+# songs = get_songs_by_artist(token, artist_id)
+# print(songs)
 
-for idx, song in enumerate(songs):
-    print(f"{idx + 1}. {song['name']}")
+# for idx, song in enumerate(songs):
+#     print(f"{idx + 1}. {song['name']}")
+
+# #categories = get_all_categories(token)
+
 
