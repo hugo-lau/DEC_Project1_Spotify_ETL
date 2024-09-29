@@ -1,8 +1,7 @@
 from dotenv import load_dotenv
 import os
-
-from connectors.spotify_api import SpotifyApiClient
-from assets.assets import extract_categories, extract_new_releases, extract_search_for_artist, extract_songs_by_artist
+from etl_project.assets.assets import extract_categories, extract_new_releases, extract_search_for_artist, extract_songs_by_artist
+from etl_project.connectors.spotify_api import SpotifyApiClient
 
 
 if __name__=='__main__':

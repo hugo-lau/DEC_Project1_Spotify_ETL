@@ -1,11 +1,10 @@
 from requests import get
 import json
 import pandas as pd
-from connectors.spotify_api import SpotifyApiClient
+from etl_project.connectors.spotify_api import SpotifyApiClient
 
 
 base_url = 'https://api.spotify.com/v1/'
-
 
 
 def extract_categories(spotify_api_client: SpotifyApiClient):
