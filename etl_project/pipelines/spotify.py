@@ -21,17 +21,22 @@ if __name__=='__main__':
     spotify_api_client = SpotifyApiClient(client_id=client_id, client_secret=client_secret)
     
     df_categories = extract_categories(spotify_api_client)
+    print("df_catagories")
     print(df_categories)
     
-
     df_new_releases=extract_new_releases(spotify_api_client)
-    
+    print("df_new_releases")
+    print(df_new_releases)
 
     result = extract_search_for_artist(spotify_api_client,'Imagine Dragons')
+    print("result")
+    print(result)
     
     artist_id = result["id"]
     songs = extract_songs_by_artist(spotify_api_client, artist_id)
+    print("songs")
 
+    print("Top 10 tracks for Imagine Dragons")
     for idx, song in enumerate(songs):
         print(f"{idx + 1}. {song['name']}")
     
