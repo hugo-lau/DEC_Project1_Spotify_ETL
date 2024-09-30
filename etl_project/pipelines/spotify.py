@@ -25,6 +25,7 @@ if __name__=='__main__':
     spotify_api_client = SpotifyApiClient(client_id=client_id, client_secret=client_secret)
     
     df_categories = extract_categories(spotify_api_client)
+    print("df_catagories")
     print(df_categories)
     print("get list of catagories used to tag items in Spotify on")
     #print(df_categories)
@@ -160,10 +161,14 @@ if __name__=='__main__':
     ##### Can get Top 10 tracks for Each Artist ####
 
     result = extract_search_for_artist(spotify_api_client,'Imagine Dragons')
+    print("result")
+    print(result)
     artist_id = result["id"]
     songs = extract_songs_by_artist(spotify_api_client, artist_id)
     print("songs")
+    print("songs")
 
+    print("Top 10 tracks for Imagine Dragons")
     print("Top 10 tracks for Imagine Dragons")
     for idx, song in enumerate(songs):
         print(f"{idx + 1}. {song['name']}")
