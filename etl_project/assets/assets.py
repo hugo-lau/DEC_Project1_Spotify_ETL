@@ -7,6 +7,10 @@ from etl_project.connectors.spotify_api import SpotifyApiClient
 base_url = 'https://api.spotify.com/v1/'
 
 
+<<<<<<< HEAD
+=======
+# https://developer.spotify.com/documentation/web-api/reference/get-categories
+>>>>>>> f727a94 (adding references to spotify)
 def extract_categories(spotify_api_client: SpotifyApiClient):
     headers = spotify_api_client.get_auth_header(spotify_api_client.get_token())
     query ='browse/categories'

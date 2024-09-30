@@ -21,6 +21,7 @@ if __name__=='__main__':
     spotify_api_client = SpotifyApiClient(client_id=client_id, client_secret=client_secret)
     
     df_categories = extract_categories(spotify_api_client)
+    print(df_categories)
     
 
     df_new_releases=extract_new_releases(spotify_api_client)
