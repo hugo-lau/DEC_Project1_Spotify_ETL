@@ -1,7 +1,10 @@
 from dotenv import load_dotenv
 import pandas as pd
+import pandas as pd
 import os
-from etl_project.assets.assets import extract_categories, extract_new_releases, extract_search_for_artist, extract_songs_by_artist
+from etl_project.assets.assets import extract_categories, extract_new_releases 
+from etl_project.assets.assets import extract_search_for_artist, extract_songs_by_artist, extract_album_tracks
+from etl_project.assets.assets import extract_audio_features, extract_track
 from etl_project.connectors.postgresql import PostgreSqlClient
 from etl_project.assets.assets import extract_categories, extract_new_releases 
 from etl_project.assets.assets import extract_search_for_artist, extract_songs_by_artist, extract_album_tracks
@@ -161,17 +164,56 @@ if __name__=='__main__':
     ##### Can get Top 10 tracks for Each Artist ####
 
     result = extract_search_for_artist(spotify_api_client,'Imagine Dragons')
-    print("result")
-    print(result)
+    
+    print("get catalog info from album track")
+    track_data = []
+    for album_id in album_id:
+        track_data.extend(extract_album_tracks(spotify_api_client, album_id = album_id))
+   
+    data = []
+
+    print("get track details including audio features and popularity for each album")
+    for track in track_data:
+        #Fetch Audio features
+        features = extract_audio_features(spotify_api_client, track['id'])
+        #Fetch track details to get popularity
+        track_popularity = extract_track(spotify_api_client, track['id'])
+        track_info = track_data.copy() 
+        track_info = {
+            'album': track_popularity['album']['name'],
+            'artist': track_popularity['artists'][0]['name'],
+            'track_name': track['name'],
+            'track_id': track['id'],          
+            'acousticness': features['acousticness'],
+            'danceability': features['danceability'],
+            'energy': features['energy'],
+            'instrumentalness': features['instrumentalness'],
+            'liveness': features['liveness'],
+            'loudness': features['loudness'],
+            'speechiness': features['speechiness'],
+            'tempo': features['tempo'],
+            'valence': features['valence'],
+            'popularity': track_popularity['popularity']  # Fetch popularity
+        }
+        data.append(track_info)
+    print("finish colleting track info")
+    df = pd.DataFrame(data)
+
+    print("here are the audio characteristics of popular albums and tracks")
+    print(df.head(50))
+    
     artist_id = result["id"]
     songs = extract_songs_by_artist(spotify_api_client, artist_id)
-    print("songs")
-    print("songs")
+    df_songs = pd.json_normalize(songs)
+    #print("songs by artists")
+    #print(df_songs)
+   
+       print("songs")
 
     print("Top 10 tracks for Imagine Dragons")
-    print("Top 10 tracks for Imagine Dragons")
-    for idx, song in enumerate(songs):
-        print(f"{idx + 1}. {song['name']}")
+    #print("Top 10 tracks for Imagine Dragons")
+    #for idx, song in enumerate(songs):
+        #print(f"{idx + 1}. {song['name']}")
     
     postgresql_client = PostgreSqlClient(
         server_name=SERVER_NAME,

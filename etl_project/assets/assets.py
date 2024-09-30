@@ -118,6 +118,7 @@ def create_spotify_client(client_id: str, client_secret: str):
     client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     return spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
+<<<<<<< HEAD
 #filter and rename select columns from dataframe
 def transform_album_info(df):
     album_info_list = []
@@ -137,6 +138,8 @@ def transform_album_info(df):
 
 
 
+=======
+>>>>>>> 236ed99 (adding assets and spotify)
 def extract_new_releases2(client_id: str, client_secret: str) -> list[dict]:
     """
     Extract new music releases from Spotify.
