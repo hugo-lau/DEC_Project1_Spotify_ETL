@@ -1,6 +1,9 @@
 from dotenv import load_dotenv
+import pandas as pd
 import os
-from etl_project.assets.assets import extract_categories, extract_new_releases, extract_search_for_artist, extract_songs_by_artist
+from etl_project.assets.assets import extract_categories, extract_new_releases 
+from etl_project.assets.assets import extract_search_for_artist, extract_songs_by_artist, extract_album_tracks
+from etl_project.assets.assets import extract_audio_features, extract_track
 from etl_project.connectors.spotify_api import SpotifyApiClient
 
 
@@ -14,21 +17,83 @@ if __name__=='__main__':
     spotify_api_client = SpotifyApiClient(client_id=client_id, client_secret=client_secret)
     
     df_categories = extract_categories(spotify_api_client)
-    print("df_catagories")
-    print(df_categories)
+    print("get list of catagories used to tag items in Spotify on")
+    #print(df_categories)
     
-    df_new_releases=extract_new_releases(spotify_api_client)
-    print("df_new_releases")
-    print(df_new_releases)
+    df_new_releases = extract_new_releases(spotify_api_client)
+    print("get_new_releases")
+    #print(df_new_releases)
+
+    album_info_list = []
+
+    for index, album_info in df_new_releases.iterrows():
+        album_info_dict = {
+            'album_name': album_info['name'],
+            'album_id': album_info['id'],
+            'release_date': album_info['release_date'],
+            'total_tracks': album_info['total_tracks'],
+            'artist_name': album_info['artists'][0]['name'],
+            'artist_id': album_info['artists'][0]['id']
+        }
+        album_info_list.append(album_info_dict)
+    
+    print("get_album_info")
+    df_album_info = pd.json_normalize(album_info_list)
+    #print(df_album_info)
+
+    #get track id
+    print("get album id")
+    album_id = []
+    for album_info in album_info_list:
+        album_id.append(album_info["album_id"])
 
     result = extract_search_for_artist(spotify_api_client,'Imagine Dragons')
-    print("result")
-    print(result)
+    
+    print("get catalog info from album track")
+    track_data = []
+    for album_id in album_id:
+        track_data.extend(extract_album_tracks(spotify_api_client, album_id = album_id))
+   
+    data = []
+
+    print("get track details including audio features and popularity for each album")
+    for track in track_data:
+        #Fetch Audio features
+        features = extract_audio_features(spotify_api_client, track['id'])
+        #Fetch track details to get popularity
+        track_popularity = extract_track(spotify_api_client, track['id'])
+        track_info = track_data.copy() 
+        track_info = {
+            'album': track_popularity['album']['name'],
+            'artist': track_popularity['artists'][0]['name'],
+            'track_name': track['name'],
+            'track_id': track['id'],          
+            'acousticness': features['acousticness'],
+            'danceability': features['danceability'],
+            'energy': features['energy'],
+            'instrumentalness': features['instrumentalness'],
+            'liveness': features['liveness'],
+            'loudness': features['loudness'],
+            'speechiness': features['speechiness'],
+            'tempo': features['tempo'],
+            'valence': features['valence'],
+            'popularity': track_popularity['popularity']  # Fetch popularity
+        }
+        data.append(track_info)
+    print("finish colleting track info")
+    df = pd.DataFrame(data)
+
+    print("here are the audio characteristics of popular albums and tracks")
+    print(df.head(50))
+    
     
     artist_id = result["id"]
     songs = extract_songs_by_artist(spotify_api_client, artist_id)
-    print("songs")
-
-    print("Top 10 tracks for Imagine Dragons")
-    for idx, song in enumerate(songs):
-        print(f"{idx + 1}. {song['name']}")
+    df_songs = pd.json_normalize(songs)
+    #print("songs by artists")
+    #print(df_songs)
+   
+   
+    #print("Top 10 tracks for Imagine Dragons")
+    #for idx, song in enumerate(songs):
+        #print(f"{idx + 1}. {song['name']}")
