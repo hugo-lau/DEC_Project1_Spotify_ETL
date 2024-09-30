@@ -7,9 +7,16 @@ from spotipy.oauth2 import SpotifyClientCredentials
 base_url = 'https://api.spotify.com/v1/'
 
 
+<<<<<<< HEAD
 ### Extract ####
 
 # https://developer.spotify.com/documentation/web-api/reference/get-categories
+=======
+<<<<<<< HEAD
+=======
+# https://developer.spotify.com/documentation/web-api/reference/get-categories
+>>>>>>> f727a94 (adding references to spotify)
+>>>>>>> 37fb2db (adding references to spotify)
 def extract_categories(spotify_api_client: SpotifyApiClient):
     headers = spotify_api_client.get_auth_header(spotify_api_client.get_token())
     query ='browse/categories'
