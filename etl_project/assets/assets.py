@@ -9,6 +9,9 @@ base_url = 'https://api.spotify.com/v1/'
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f2ea29b (updating assets and pipeline spotify at night)
 ### Extract ####
 
 # https://developer.spotify.com/documentation/web-api/reference/get-categories
@@ -119,6 +122,9 @@ def create_spotify_client(client_id: str, client_secret: str):
     return spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f2ea29b (updating assets and pipeline spotify at night)
 #filter and rename select columns from dataframe
 def transform_album_info(df):
     album_info_list = []
@@ -138,8 +144,11 @@ def transform_album_info(df):
 
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> 236ed99 (adding assets and spotify)
+=======
+>>>>>>> f2ea29b (updating assets and pipeline spotify at night)
 def extract_new_releases2(client_id: str, client_secret: str) -> list[dict]:
     """
     Extract new music releases from Spotify.
