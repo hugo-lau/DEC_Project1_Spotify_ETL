@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import pandas as pd
 import pandas as pd
+import pandas as pd
 import os
 from etl_project.assets.assets import extract_categories, extract_new_releases 
 from etl_project.assets.assets import extract_search_for_artist, extract_songs_by_artist, extract_album_tracks
@@ -17,12 +18,6 @@ if __name__=='__main__':
     load_dotenv()
     client_id=os.environ.get('CLIENT_ID')
     client_secret=os.environ.get("CLIENT_SECRET")
-
-    DB_USERNAME=os.environ.get("DB_USERNAME")
-    DB_PASSWORD=os.environ.get("DB_PASSWORD")
-    SERVER_NAME = os.environ.get("SERVER_NAME")
-    DATABASE_NAME=os.environ.get("DATABASE_NAME")
-    PORT=os.environ.get("PORT")
 
 
     spotify_api_client = SpotifyApiClient(client_id=client_id, client_secret=client_secret)
@@ -250,34 +245,6 @@ if __name__=='__main__':
    
        print("songs")
 
-    print("Top 10 tracks for Imagine Dragons")
-    #print("Top 10 tracks for Imagine Dragons")
-    #for idx, song in enumerate(songs):
-        #print(f"{idx + 1}. {song['name']}")
-    
-    postgresql_client = PostgreSqlClient(
-        server_name=SERVER_NAME,
-        username=DB_USERNAME,
-        password=DB_PASSWORD,
-        database_name=DATABASE_NAME,
-        port=PORT,
-    )
-
-    metadata=MetaData()
-    table = Table(
-        'spotify', metadata,
-        Column('artist_id', Integer, primary_key=True),
-        Column('artist_name', String),
-    )
-    
-    postgresql_client.create_table(metadata)
-
-    print("completed")
-    df_songs = pd.json_normalize(songs)
-    #print("songs by artists")
-    #print(df_songs)
-   
-   
     #print("Top 10 tracks for Imagine Dragons")
     #for idx, song in enumerate(songs):
         #print(f"{idx + 1}. {song['name']}")
