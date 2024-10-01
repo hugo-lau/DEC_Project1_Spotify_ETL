@@ -7,6 +7,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
 base_url = 'https://api.spotify.com/v1/'
 
 
+### Extract ####
+
 # https://developer.spotify.com/documentation/web-api/reference/get-categories
 def extract_categories(spotify_api_client: SpotifyApiClient):
     headers = spotify_api_client.get_auth_header(spotify_api_client.get_token())
@@ -88,7 +90,7 @@ def extract_search_for_artist(spotify_api_client: SpotifyApiClient, artist_name)
 def extract_songs_by_artist(spotify_api_client: SpotifyApiClient,artist_id):
     query = f"artists/{artist_id}/top-tracks?market=US"
     query_url= f'{base_url}{query}'
-    print(query_url)
+    #print(query_url)
     headers = spotify_api_client.get_auth_header(spotify_api_client.get_token())
     result = get(query_url, headers = headers)
     json_result = json.loads(result.content)['tracks']
@@ -104,6 +106,25 @@ def create_spotify_client(client_id: str, client_secret: str):
     """
     client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     return spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+#filter and rename select columns from dataframe
+def transform_album_info(df):
+    album_info_list = []
+    
+    for index, album_info in df.iterrows():
+        album_info_dict = {
+            'album_name': album_info['name'],
+            'album_id': album_info['id'],
+            'release_date': album_info['release_date'],
+            'total_tracks': album_info['total_tracks'],
+            'artist_name': album_info['artists'][0]['name'],
+            'artist_id': album_info['artists'][0]['id']
+        }
+        album_info_list.append(album_info_dict)
+    
+    return album_info_list
+
+
 
 def extract_new_releases2(client_id: str, client_secret: str) -> list[dict]:
     """
