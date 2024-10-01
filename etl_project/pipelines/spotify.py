@@ -18,52 +18,23 @@ if __name__=='__main__':
     
     df_new_releases = extract_new_releases(spotify_api_client)
     print("get_new_releases")
-    #print(df_new_releases)
+    
 
     #2 transformation techniques select certain attributes such as album name, album id, release_date, total_tracks, and etc
     #filter and rename select columns from dataframe
     select_album_info = transform_album_info(df_new_releases)
-
-    # album_info_list = []
-    # for index, album_info in df_new_releases.iterrows():
-    #     album_info_dict = {
-    #         'album_name': album_info['name'],
-    #         'album_id': album_info['id'],
-    #         'release_date': album_info['release_date'],
-    #         'total_tracks': album_info['total_tracks'],
-    #         'artist_name': album_info['artists'][0]['name'],
-    #         'artist_id': album_info['artists'][0]['id']
-    #     }
-    #     album_info_list.append(album_info_dict)
     
     print("********** Here are the top 3 Releases **********")
     #print(select_album_info)
     df_select_album_info = pd.json_normalize(select_album_info)
     print(df_select_album_info)
 
-    #get track id
-    print("get album id")
-    # album_id = []
-    # for album_info in df_album_info_list:
-    #     album_id.append(album_info["album_id"])
-
-    # album_id = []
-    # for album_info in select_album_info:
-    #     album_id.append(album_info["album_id"])
-    
-    # print(album_id)
-
-    # print("get catalog info from album track")
-    # track_data = []
-    # for album_id in album_id:
-    #     track_data.extend(extract_album_tracks(spotify_api_client, album_id = album_id))
+    print("get catalog info from album track")
 
     track_data = []
     for album_info in select_album_info:
         track_data.extend(extract_album_tracks(spotify_api_client, album_id = album_info["album_id"]))
     
-    #print(track_data)
-
     features = []
     track_popularity = []
     print("get track details including audio features and popularity for each album")
@@ -74,36 +45,12 @@ if __name__=='__main__':
         #Fetch track details to get popularity
         get_popularity = extract_track(spotify_api_client, track['id'])
         track_popularity.append(get_popularity)
-        #track_info = track_data.copy() 
-        # track_info = {
-        #     'album': track_popularity['album']['name'],
-        #     'artist': track_popularity['artists'][0]['name'],
-        #     'track_name': track['name'],
-        #     'track_id': track['id'],          
-        #     'acousticness': features['acousticness'],
-        #     'danceability': features['danceability'],
-        #     'energy': features['energy'],
-        #     'instrumentalness': features['instrumentalness'],
-        #     'liveness': features['liveness'],
-        #     'loudness': features['loudness'],
-        #     'speechiness': features['speechiness'],
-        #     'tempo': features['tempo'],
-        #     'valence': features['valence'],
-        #     'popularity': track_popularity['popularity']  # Fetch popularity
-        # }
-        # data.append(track_info)
     df_features = pd.json_normalize(features)
     # csv_file_path = 'features.csv'
     # df_features.to_csv(csv_file_path,index=False)
-    # #print("features of songs")
-    # #print(df_features.columns.tolist())
-    # #print("track popularity")
     df_track_popularity = pd.json_normalize(track_popularity)
     # csv_file_path = 'track_popularity.csv'
     # df_track_popularity.to_csv(csv_file_path,index=False)
-    #print(df_track_popularity.columns.tolist())
-    #print(track_popularity)
-    #print(df_track_popularity)
 
     # merge the two tables (one for audio features, one for track details including popularity)
     df_merged = pd.merge(left=df_features, right = df_track_popularity, on = ["id"])
