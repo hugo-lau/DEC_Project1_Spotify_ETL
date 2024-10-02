@@ -4,8 +4,10 @@ import pandas as pd
 from etl_project.connectors.spotify_api import SpotifyApiClient
 
 
+
 base_url = 'https://api.spotify.com/v1/'
 
+# https://developer.spotify.com/documentation/web-api/reference/get-categories
 def extract_categories(spotify_api_client: SpotifyApiClient):
     headers = spotify_api_client.get_auth_header(spotify_api_client.get_token())
     query ='browse/categories'
@@ -19,9 +21,11 @@ def extract_categories(spotify_api_client: SpotifyApiClient):
     df_json_selected = df_json_result[['name','id']]
     return df_json_selected
 
+
+# https://developer.spotify.com/documentation/web-api/reference/get-new-releases
 def extract_new_releases(spotify_api_client: SpotifyApiClient):
     headers = spotify_api_client.get_auth_header(spotify_api_client.get_token())
-    query='browse/new-releases'
+    query='browse/new-releases?limit=3'
     query_url=f'{base_url}{query}'
     response = get(query_url,headers=headers)
     json_result = json.loads(response.content)['albums']['items']
@@ -67,6 +71,8 @@ def extract_track(spotify_api_client: SpotifyApiClient, track_id):
     return (json_result)
 
 
+# Search artist id
+# https://developer.spotify.com/documentation/web-api/reference/search
 def extract_search_for_artist(spotify_api_client: SpotifyApiClient, artist_name): 
     headers = spotify_api_client.get_auth_header(spotify_api_client.get_token())
     query = f"search/?q={artist_name}&type=artist&limit=1"
@@ -80,6 +86,9 @@ def extract_search_for_artist(spotify_api_client: SpotifyApiClient, artist_name)
         return None
     return json_result[0]
 
+
+# https://developer.spotify.com/documentation/web-api/reference/get-an-artists-top-tracks
+# Get artist top tracks
 def extract_songs_by_artist(spotify_api_client: SpotifyApiClient,artist_id):
     query = f"artists/{artist_id}/top-tracks?market=US"
     query_url= f'{base_url}{query}'
@@ -89,15 +98,17 @@ def extract_songs_by_artist(spotify_api_client: SpotifyApiClient,artist_id):
     json_result = json.loads(result.content)['tracks']
     return (json_result)
 
+
+#extracting the tracks data of each album
 def extract_album_track_data(spotify_api_client, select_album_info):
     track_data = []
     for album_info in select_album_info['album_id']:
         track_data.extend(extract_album_tracks(spotify_api_client, album_id = album_info))
     #print(track_data)
-
     return track_data
 
 
+#extracting the features of each track in the album
 def extract_album_tracks_features(spotify_api_client, album_track_data):
     features=[]
     for track in album_track_data:
@@ -108,6 +119,8 @@ def extract_album_tracks_features(spotify_api_client, album_track_data):
 
     return features
 
+
+#extracts the popularity of the album
 def extract_album_popularity(spotify_api_client, album_track_data):
     track_popularity = []
     for track in album_track_data:
@@ -136,7 +149,7 @@ def transform_album_info(df):
     return df_select_album_info
 
 
-def tansform_features_track_popularity(df_features, df_track_popularity):
+def transform_features_track_popularity(df_features, df_track_popularity):
     df_merged = pd.merge(left=df_features, right = df_track_popularity, on = ["id"])
     df_merged['artist_name'] = df_merged['album.artists'].apply(lambda x: x[0]['name'] if x else None)
     # this transformation technique renames two of the columns
