@@ -9,7 +9,7 @@ class PipelineLogging:
         logger = logging.getLogger(pipeline_name)
         logger.setLevel(logging.INFO)
         date_time = datetime.datetime.now()
-        date_time = date_time.strftime("%Y-%m-%d %H:%M:%S")
+        date_time = date_time.strftime("%Y-%m-%d_%H-%M-%S")
 
         self.file_path=(
             f"{self.log_folder_path}/{self.pipeline_name}_{date_time}.log"
