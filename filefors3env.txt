@@ -1,0 +1,8 @@
+CLIENT_ID=bfaf8650fa0a49fdbffc0ef34701d693
+CLIENT_SECRET=d06a4f8b11a246d38e9c5fc1b326b8fb
+
+DB_USERNAME=prj1grp3spot
+DB_PASSWORD=bootcampproject1
+SERVER_NAME=project1group3-spotify.cziwqci46tgn.us-east-1.rds.amazonaws.com
+PORT=5432
+DATABASE_NAME=project1group3-spotify

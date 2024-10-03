@@ -22,6 +22,7 @@ if __name__=='__main__':
     pipeline_logging.logger.info("Getting pipeline environment variables")
     client_id=os.environ.get('CLIENT_ID')
     client_secret=os.environ.get("CLIENT_SECRET")
+    
     DB_USERNAME = os.environ.get("DB_USERNAME")
     DB_PASSWORD = os.environ.get("DB_PASSWORD")
     SERVER_NAME = os.environ.get("SERVER_NAME")
