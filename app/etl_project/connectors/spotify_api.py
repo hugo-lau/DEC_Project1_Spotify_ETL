@@ -21,6 +21,7 @@ class SpotifyApiClient:
         #creates the token once hte previous token is expired.
         result = post(url, headers=headers, data = data)
         json_result = json.loads(result.content)
+        print(json_result)
         token = json_result["access_token"]
         self.token = token
     
