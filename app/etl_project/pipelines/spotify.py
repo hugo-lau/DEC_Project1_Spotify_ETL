@@ -6,10 +6,11 @@ from etl_project.assets.assets import transform_album_info, transform_features_t
 from etl_project.assets.pipeline_logging import PipelineLogging
 from etl_project.connectors.postgresql import PostgreSqlClient
 from etl_project.connectors.spotify_api import SpotifyApiClient
-from sqlalchemy import Table, MetaData, Column, Integer, String, Float
+from sqlalchemy import Table, MetaData, Column, Integer, String, Float, PrimaryKeyConstraint, create_engine
 import yaml
 from pathlib import Path
 from etl_project.assets.metadata_logging import MetaDataLogging, MetaDataLoggingStatus
+
 
 
 if __name__=='__main__':
@@ -48,7 +49,6 @@ if __name__=='__main__':
         password=LOGGING_PASSWORD,
         port=LOGGING_PORT,
     )
-
     pipeline_logging.logger.info("Setting up metadata logger")
     metadata_logger = MetaDataLogging(
         pipeline_name=PIPELINE_NAME,
@@ -61,6 +61,7 @@ if __name__=='__main__':
         pipeline_logging.logger.info("Getting pipeline environment variables")
         client_id=os.environ.get('CLIENT_ID')
         client_secret=os.environ.get("CLIENT_SECRET")
+        numberofreleases=os.environ.get("NUMBER_OF_RELEASES")
         
         DB_USERNAME = os.environ.get("DB_USERNAME")
         DB_PASSWORD = os.environ.get("DB_PASSWORD")
@@ -75,14 +76,14 @@ if __name__=='__main__':
         
         pipeline_logging.logger.info("********** Getting New Releases **********")
         pipeline_logging.logger.info("New releases")
-        df_new_releases = extract_new_releases(spotify_api_client)
+        df_new_releases = extract_new_releases(spotify_api_client, numberofreleases)
     
         #2 transformation techniques select certain attributes such as album name, album id, release_date, total_tracks, and etc
         #filter and rename select columns from dataframe
         select_album_info = transform_album_info(df_new_releases)
 
-        pipeline_logging.logger.info("********** Here are the top 3 Releases **********")
-        pipeline_logging.logger.info(select_album_info.head(3))
+        pipeline_logging.logger.info(f"********** Here are the top {numberofreleases} Releases **********")
+        pipeline_logging.logger.info(select_album_info)
 
 
         album_track_data = extract_album_track_data(spotify_api_client, select_album_info)
@@ -144,7 +145,8 @@ if __name__=='__main__':
             metadata,
             Column("album", String),
             Column("artist", String),
-            Column('name', String),
+            Column('song_name', String),
+            Column('release_date', String),
             Column('track_id', String, primary_key=True),
             Column('acousticness', Float),
             Column('danceability', Float),
@@ -156,9 +158,12 @@ if __name__=='__main__':
             Column('tempo', Float),
             Column('valence', Float),
             Column('popularity', Float),
+
         )
-        
+
         postgresql_client.create_table(metadata)
+
+
 
         pipeline_logging.logger.info("Table Created Successfully.")
 

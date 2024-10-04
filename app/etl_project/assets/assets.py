@@ -25,9 +25,9 @@ def extract_categories(spotify_api_client: SpotifyApiClient):
 
 
 # https://developer.spotify.com/documentation/web-api/reference/get-new-releases
-def extract_new_releases(spotify_api_client: SpotifyApiClient):
+def extract_new_releases(spotify_api_client: SpotifyApiClient, numberofreleases):
     headers = spotify_api_client.get_auth_header(spotify_api_client.get_token())
-    query='browse/new-releases?limit=3'
+    query=f'browse/new-releases?limit={numberofreleases}'
     query_url=f'{base_url}{query}'
    
     response = get(query_url,headers=headers)
@@ -171,11 +171,13 @@ def transform_features_track_popularity(df_features, df_track_popularity):
     df_merged['artist_name'] = df_merged['album.artists'].apply(lambda x: x[0]['name'] if x else None)
     
     # this transformation technique renames two of the columns
-    df_merged = df_merged.rename(columns={"artist_name": "artist", "album.name": "album", "id": "track_id"})
+    df_merged = df_merged.rename(columns={"artist_name": "artist", "album.name": "album", "id": "track_id", "album.release_date": "release_date", "name": "song_name"})
+   
     df_selected = df_merged[
         ["album", 
         "artist",
-        "name",
+        "song_name",
+        "release_date",
         "track_id",          
         "acousticness",
         "danceability",
@@ -188,14 +190,16 @@ def transform_features_track_popularity(df_features, df_track_popularity):
         "valence",
         "popularity"]
     ]
+    #df_selected = df_selected.sort_values(by=['track_id'])
+    df_sorted = df_selected.sort_values(by=['release_date', 'artist', 'song_name'])
 
     #print("******** Here are the audio characteristics of popular albums and tracks **************")
     #print(df_selected.head(50))
 
     # This is a dump of final file
     csv_file_path = 'selected_data.csv'
-    df_selected.to_csv(csv_file_path, index=False)
-    return df_selected
+    df_sorted.to_csv(csv_file_path, index=False)
+    return df_sorted
 
 
 # This function loads the curated dataframe data to postgresql
