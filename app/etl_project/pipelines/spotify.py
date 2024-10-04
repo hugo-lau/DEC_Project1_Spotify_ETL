@@ -24,7 +24,6 @@ if __name__=='__main__':
             pipline_config = yaml.safe_load(yaml_file)
             config = pipline_config.get("config")
             PIPELINE_NAME = pipline_config.get("name")
-            numberofreleases = config.get("number_of_releases")
     else:
         raise Exception(
             f"Missing {yaml_file_path} file!"
@@ -50,7 +49,6 @@ if __name__=='__main__':
         password=LOGGING_PASSWORD,
         port=LOGGING_PORT,
     )
-
     pipeline_logging.logger.info("Setting up metadata logger")
     metadata_logger = MetaDataLogging(
         pipeline_name=PIPELINE_NAME,
