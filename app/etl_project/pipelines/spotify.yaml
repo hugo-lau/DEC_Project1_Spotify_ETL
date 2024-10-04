@@ -1,3 +1,4 @@
 name: spotify
 config:
   log_folder_path: "etl_project/logs"
+  number_of_releases: "7"
