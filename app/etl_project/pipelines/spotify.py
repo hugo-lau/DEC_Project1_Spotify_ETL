@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import pandas as pd
 import os
 from etl_project.assets.assets import extract_album_track_data, extract_categories, extract_new_releases, extract_search_for_artist, extract_songs_by_artist, extract_album_tracks, extract_audio_features, extract_track, extract_album_tracks_features, extract_album_popularity 
-from etl_project.assets.assets import transform_album_info, transform_features_track_popularity, load
+from etl_project.assets.assets import transform_album_info, transform_features_track_popularity, load, transform_techniques
 from etl_project.assets.pipeline_logging import PipelineLogging
 from etl_project.connectors.postgresql import PostgreSqlClient
 from etl_project.connectors.spotify_api import SpotifyApiClient
@@ -94,6 +94,9 @@ if __name__=='__main__':
 
         pipeline_logging.logger.info("Merging features and popularity")
         df = transform_features_track_popularity(df_features=df_features, df_track_popularity=df_track_popularity)
+        
+        
+        #transform_techniques(df)
 
         # ********* This is too see the dumps for these files if needed ***********
         # csv_file_path = 'features.csv'

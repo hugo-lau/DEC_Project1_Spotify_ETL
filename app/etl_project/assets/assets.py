@@ -202,6 +202,19 @@ def transform_features_track_popularity(df_features, df_track_popularity):
     return df_sorted
 
 
+""" Some transformation techniques - lower the song_name, rounding the decimals to 2 units, finding the least popular album, ranking based on popularity"""
+def transform_techniques(df_selected):
+    df_selected['song_name'] = df_selected['song_name'].str.lower()
+    print(df_selected)
+    df_selected ['speechiness'] = df_selected['speechiness'].round(2)
+    df_speach = df_selected[['speechiness']]
+    print(df_speach)
+    least_popular = df_selected.loc[df_selected['popularity'].idxmin()]
+    print("least_popular", least_popular)
+    df_selected['max_rank'] = df_selected['popularity'].rank(method='max')
+    print(df_selected)
+    pass
+
 # This function loads the curated dataframe data to postgresql
 def load(
         df: pd.DataFrame,
