@@ -6,7 +6,7 @@ from etl_project.assets.assets import transform_album_info, transform_features_t
 from etl_project.assets.pipeline_logging import PipelineLogging
 from etl_project.connectors.postgresql import PostgreSqlClient
 from etl_project.connectors.spotify_api import SpotifyApiClient
-from sqlalchemy import Table, MetaData, Column, Integer, String, Float, PrimaryKeyConstraint, create_engine
+from sqlalchemy import Table, MetaData, Column, Integer, String, Float, TIMESTAMP, func
 import yaml
 from pathlib import Path
 from etl_project.assets.metadata_logging import MetaDataLogging, MetaDataLoggingStatus
@@ -76,7 +76,7 @@ if __name__=='__main__':
         
         pipeline_logging.logger.info("********** Getting New Releases **********")
         pipeline_logging.logger.info("New releases")
-        df_new_releases = extract_new_releases(spotify_api_client, numberofreleases)
+        df_new_releases = extract_new_releases(spotify_api_client, numberofreleases=numberofreleases)
     
         #2 transformation techniques select certain attributes such as album name, album id, release_date, total_tracks, and etc
         #filter and rename select columns from dataframe
@@ -158,7 +158,7 @@ if __name__=='__main__':
             Column('tempo', Float),
             Column('valence', Float),
             Column('popularity', Float),
-
+            Column('updated_at', TIMESTAMP, server_default=func.now(), onupdate=func.now())
         )
 
         postgresql_client.create_table(metadata)
