@@ -79,37 +79,37 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 |---------------------------------------|------------|----------|
 | Extract Data                          | 09-28-2024 |          |
 | • Static Extraction                   | 09-28-2024 |          |
-| • Live Extraction                     | 09-28-2024 |          |
-| • Full Extract                        | 09-28-2024 |          |
+| • Live Extraction                     | 09-28-2024 | Complete |
+| • Full Extract                        | 09-28-2024 | Complete |
 | • Incremental Extract                 | 09-28-2024 |          |
-| Transform Data                        | 09-30-2024 |          |
-| • 3 Transformation Techniques         | 09-30-2024 |          |
-| • 5 Transformation Techniques         | 09-30-2024 |          |
-| • 7 Transformation Techniques         | 09-30-2024 |          |
-| Load Data                             | 10-01-2024 |          |
-| • Full Load                           | 10-01-2024 |          |
-| • Incremental Load                    | 10-01-2024 |          |
-| • Upsert Load                         | 10-01-2024 |          |
+| Transform Data                        | 09-30-2024 | Complete |
+| • 3 Transformation Techniques         | 09-30-2024 | Complete |
+| • 5 Transformation Techniques         | 09-30-2024 | Complete |
+| • 7 Transformation Techniques         | 09-30-2024 | Complete |
+| Load Data                             | 10-01-2024 | Complete |
+| • Full Load                           | 10-01-2024 | Complete |
+| • Incremental Load                    | 10-01-2024 | Complete |
+| • Upsert Load                         | 10-01-2024 | Complete |
 
 ## Phase 3 - Build Docker Image and Run on AWS
 
 | Task                                  | Due Date   | Status   |
 |---------------------------------------|------------|----------|
-| Build and Run Docker Locally          | 10-01-2024 |          |
-| • Build Docker image                  | 10-01-2024 |          |
-| • Run Docker container                | 10-01-2024 |          |
-| Deploy Docker Container to AWS        | 10-03-2024 |          |
-| • RDS - screenshot of dataset         | 10-03-2024 |          |
-| • ECR - screenshot of image           | 10-03-2024 |          |
-| • S3 - screenshot of 'env' file       | 10-03-2024 |          |
-| • IAM Role - screenshot               | 10-03-2024 |          |
+| Build and Run Docker Locally          | 10-01-2024 | Complete |
+| • Build Docker image                  | 10-01-2024 | Complete |
+| • Run Docker container                | 10-01-2024 | Complete |
+| Deploy Docker Container to AWS        | 10-03-2024 | Complete |
+| • RDS - screenshot of dataset         | 10-03-2024 | Complete |
+| • ECR - screenshot of image           | 10-03-2024 | Complete |
+| • S3 - screenshot of 'env' file       | 10-03-2024 | Complete |
+| • IAM Role - screenshot               | 10-03-2024 | Complete |
 
 ## Phase 4 - Testing/Logging, Documentation/Presentation
 
 | Task                                  | Due Date   | Status   |
 |---------------------------------------|------------|----------|
-| Write pipeline logs to database       | 10-04-2024 |          |
-| Implement unit tests                  | 10-05-2024 |          |
+| Write pipeline logs to database       | 10-04-2024 | Complete |
+| Implement unit tests                  | 10-05-2024 | Complete |
 | Documentation                         | 10-07-2024 |          |
 | • Python docstrings and comments      | 10-07-2024 |          |
 | • Project markdown documentation      | 10-07-2024 |          |
