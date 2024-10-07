@@ -1,0 +1,1 @@
+SELECT DISTINCT album FROM public.spotify
