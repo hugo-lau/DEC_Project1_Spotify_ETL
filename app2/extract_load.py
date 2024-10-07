@@ -13,7 +13,6 @@ from sql.assets.assets import transform_album_info, transform_features_track_pop
 from sql.assets.pipeline_logging import PipelineLogging
 from sql.connectors.postgresql import PostgreSqlClient
 from sql.connectors.spotify_api import SpotifyApiClient
-import psycopg2
 
 def create_track_table_if_not_exists(engine:Engine):
     track_details_metadata=MetaData()
@@ -231,15 +230,15 @@ def transform(engine: Engine, sql_template: Template, table_name: str):
     """
     engine.execute(create_sql)
 
-def prepare_before_load(data):
-    transformed_data = []
-    for row in data:
-        # Check if track_id is present and valid
-        if 'track_id' not in row or row['track_id'] is None:
-            # Generate or retrieve a valid track_id
-            row['track_id'] = generate_unique_track_id()  # You need to define this function
-        transformed_data.append(row)
-    return transformed_data
+# def prepare_before_load(data):
+#     transformed_data = []
+#     for row in data:
+#         # Check if track_id is present and valid
+#         if 'track_id' not in row or row['track_id'] is None:
+#             # Generate or retrieve a valid track_id
+#             row['track_id'] = generate_unique_track_id()  # You need to define this function
+#         transformed_data.append(row)
+#     return transformed_data
 
 
 if __name__ == "__main__":
