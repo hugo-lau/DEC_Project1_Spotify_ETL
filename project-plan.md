@@ -127,9 +127,18 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 ## AWS Screenshots
 
-Datainstance loaded into RDS
+Dataset loaded in RDS
 
 ![project1_schedule](images/Loaded_to_RDS_Database.jpg)
 
-Docker Container Loaded in ECR
+Scheduled Task in ECS
+![project1_schedule](images/ECS_Screenshot_of_scheduled_task_in_ECS.jpg)
 
+Scheduled of Image in ECR
+![project1_schedule](images/ECR_Image_Screenshot.jpg)
+
+IAM Created Role
+![project1_schedule](images/IAM_Role_Created.jpg)
+
+S3 Bucket containing env file
+![project1_schedule](images/S3_Bucket_hosting_Environable_File.jpg)
