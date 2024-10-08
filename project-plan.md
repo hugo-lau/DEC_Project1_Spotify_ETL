@@ -29,7 +29,11 @@ Example:
 |----------------------|-------------|-------------------------------------------|
 | Spotify New Releases  | REST API   | [Spotify API Documentation](https://developer.spotify.com/documentation/web-api/) |
 
-The Spotify API updates with new releases daily, so we will schedule data extraction to occur at least once a day to capture all new music.
+The spotify API uses a RESTFUL API. Four API calls were used:
+> - Get new releases – identify latest releases
+> - Get album tracks – get tracks inside each released album
+> - Get track audio features – fetch audio features associated with each track
+> - Get track details – get details of track including popularity
 
 ## Solution architecture
 
@@ -56,13 +60,31 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 8. S3 was used to store the .env file.
 
-
+## ELT/ELT Techniques Applied
 #Initial ER Diagram of the database
 ![images/Spotify_ERD.png](images/Spotify_ERD.png)
 
+To explore and apply the techniques learned in the lessons, two container images were created. 
+One was a python pipeline, that did was a full extract and served as our MVP. 
+The other was a sql peipeline, which did an incremental extract.
+
+**Extraction**
+For both pipelines, the extraction breakdown was as follow:
+1. Get new releases - identify the latest albums released and obtain the album id.
+2. Get album tracks - from the album id, get the latest tracks and associated track_id inside each release album.
+3. Get audio features - from the track_id, get the audio features associated with each track.
+4. Get track details - from the track_id, get the track details including popularity.
+
+
+
+**Transform**
+
+
+**Load**
+
 ## Breakdown of tasks
 
-## Phase 1 - Project Planning
+**Phase 1 - Project Planning**
 
 | Task                                  | Due Date   | Status   |
 |---------------------------------------|------------|----------|
@@ -73,7 +95,7 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 | • Submit Draft Project Schedule       | 09-27-2024 | Complete |
 | • Review Project Plan                 | 09-27-2024 | Complete |
 
-## Phase 2 - MVP (Extract, Transform, Load, Docker)
+**Phase 2 - MVP (Extract, Transform, Load, Docker)**
 
 | Task                                  | Due Date   | Status   |
 |---------------------------------------|------------|----------|
@@ -91,7 +113,7 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 | • Incremental Load                    | 10-01-2024 | Complete |
 | • Upsert Load                         | 10-01-2024 | Complete |
 
-## Phase 3 - Build Docker Image and Run on AWS
+**Phase 3 - Build Docker Image and Run on AWS**
 
 | Task                                  | Due Date   | Status   |
 |---------------------------------------|------------|----------|
@@ -104,7 +126,7 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 | • S3 - screenshot of 'env' file       | 10-03-2024 | Complete |
 | • IAM Role - screenshot               | 10-03-2024 | Complete |
 
-## Phase 4 - Testing/Logging, Documentation/Presentation
+**Phase 4 - Testing/Logging, Documentation/Presentation**
 
 | Task                                  | Due Date   | Status   |
 |---------------------------------------|------------|----------|
@@ -127,17 +149,17 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 ## AWS Screenshots
 
-Dataset loaded in RDS
+**Dataset loaded in RDS**
 
 ![project1_schedule](images/Loaded_to_RDS_Database.jpg)
 
-Scheduled Task in ECS
+**Scheduled Task in ECS**
 ![project1_schedule](images/ECS_Screenshot_of_scheduled_task_in_ECS.jpg)
 
-Scheduled of Image in ECR
+**Container Image in ECR**
 ![project1_schedule](images/ECR_Image_Screenshot.jpg)
 
-IAM Created Role
+**IAM Created Role**
 ![project1_schedule](images/IAM_Role_Created.jpg)
 
 S3 Bucket containing env file
