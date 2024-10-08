@@ -129,7 +129,7 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 Datainstance loaded into RDS
 
-![project1_schedule](images/Screenshot of Database in RDS.jpg)
+![project1_schedule](images/Loaded_to_RDS_Database.jpg)
 
 Docker Container Loaded in ECR
 
