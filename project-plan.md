@@ -240,15 +240,11 @@ S3 Bucket containing env file
 | Documentation                         | 10-07-2024 | Complete |
 | • Python docstrings and comments      | 10-07-2024 | Complete |
 | • Project markdown documentation      | 10-07-2024 | Complete |
-| Presentation                          | 10-07-2024 |          |
-| • Project context and goals           | 10-07-2024 |          |
-| • Datasets selected                   | 10-07-2024 |          |
-| • Solution architecture diagram       | 10-07-2024 |          |
-| • ETL/ELT techniques applied          | 10-07-2024 |          |
-| • Final dataset and demo              | 10-07-2024 |          |
-| • Lessons learned                     | 10-07-2024 |          |
-
-
-
-![project1_schedule](images/project1_schedule.png)
+| Presentation                          | 10-07-2024 | Complete |
+| • Project context and goals           | 10-07-2024 | Complete |
+| • Datasets selected                   | 10-07-2024 | Complete |
+| • Solution architecture diagram       | 10-07-2024 | Complete |
+| • ETL/ELT techniques applied          | 10-07-2024 | Complete |
+| • Final dataset and demo              | 10-07-2024 | Complete |
+| • Lessons learned                     | 10-07-2024 | Complete |
 
