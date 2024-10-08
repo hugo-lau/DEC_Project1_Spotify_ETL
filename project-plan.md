@@ -81,11 +81,17 @@ We landed on two notable solutions:
 
 1) We did an incremental extraction by comparing the track_ids extracted from the API to list of track_ids that were already loaded into the database. Track_IDs that were not previously loaded to database, the pipeline would proceed to run two additional API calls for each track, to gather the audio features and track details. See attached screenshot for the code to accomplish this
 
-
+Code in Extraction Function to support incremental extraction
 ```python 
 # Filter to find only new IDs
 new_ids = [id_ for id_ in source_ids if id_ not in existing_ids]  # Find new IDs
 new_ids = [f"'{id_}'" for id_ in new_ids]  # Quote the string IDs
+```
+```sql
+{% if config["extract_type"] == "incremental" %}
+WHERE
+    id IN ({{ new_ids | join(', ') }})  -- Ensure new_ids are properly formatted
+{% else %}
 ```
 
 3) Because the API endpoint, supported an offset to get X = number of latest releases, a timestamp was inserted to prove the incremental extract worked.
