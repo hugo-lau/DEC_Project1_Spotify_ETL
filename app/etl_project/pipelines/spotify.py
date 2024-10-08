@@ -96,7 +96,7 @@ if __name__=='__main__':
         df = transform_features_track_popularity(df_features=df_features, df_track_popularity=df_track_popularity)
         
         
-        #transform_techniques(df)
+        transform_techniques(df)
 
         # ********* This is too see the dumps for these files if needed ***********
         # csv_file_path = 'features.csv'
