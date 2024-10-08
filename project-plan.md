@@ -58,7 +58,7 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 
 #Initial ER Diagram of the database
-![images/ER_diagram.png](images/ER_Diagram.png)
+![images/Spotify_ERD.png](images/Spotify_ERD.png)
 
 ## Breakdown of tasks
 
