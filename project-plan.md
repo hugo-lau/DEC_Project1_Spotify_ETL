@@ -81,8 +81,8 @@ We landed on two notable solutions:
 
 1) We did an incremental extraction by comparing the track_ids extracted from the API to list of track_ids that were already loaded into the database. Track_IDs that were not previously loaded to database, the pipeline would proceed to run two additional API calls for each track, to gather the audio features and track details. See attached screenshot for the code to accomplish this
 
-# Example Code
-# Filter to find only new IDs
+
+'''markdown # Filter to find only new IDs
 new_ids = [id_ for id_ in source_ids if id_ not in existing_ids]  # Find new IDs
 new_ids = [f"'{id_}'" for id_ in new_ids]  # Quote the string IDs```python
 
