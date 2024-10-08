@@ -1,14 +1,13 @@
-# Project plan
+# DEC - Project 1
+
+This project aims to create a pipeline solution that extract from a live dataset that periodically updates, and load it to a relational database, to form an analytical database to help answer questions about music trends. The different containizered ELT packages will be deployed on AWS cloud.
 
 ## Objective
 
-The objective of our project is to provide analytical datasets from the Spotify API, focusing on new music releases and their associated audio features. This will facilitate deeper insights into music trends and preferences.
-
+The objective of our project is to expore the different ETL pipelines that can provide analytical datasets from the Spotify API. The focus will be on new music releases and their correlation between tracks audio features and popularity, . This will facilitate deeper insights into music trends and preferences.
 
 ## Consumers
-
 The primary users of our datasets are Data Analysts, Music Industry Professionals, and Marketers. They will access the data through a web interface or a dashboard that allows for easy exploration of trends and features related to new music releases.
-
 
 ## Questions
 
@@ -37,20 +36,21 @@ The spotify API uses a RESTFUL API. Four API calls were used:
 
 ## Solution architecture
 
-Following is the descriptive solution architecture diagram for implementing ETL on Spotify API
+Following is a high-level solution architecture diagram for implementing ETL on Spotify API.
+The solution will deploy two containers, one supporting a python pipeline and another supporting sql.
 
 ![images/Solution_Architecture.png](images/Solution_Architecture.png)
 
-1. Python & Pandas was used for:
-    1. Extracting the data about artists, songs, albums, new releases. Pipeline is set to run on a regular schedule
-    2. Transforming data -> drop unnecessary columns, rename columns.
+1. Python, Jinja, Pandas was used for:
+    1. Extracting the data about artists, songs, albums, new releases. 
+    2. Transforming data -> drop unnecessary columns, rename columns, sorting data.
     3. Load data to our postgres database.
 
 2. PostgreSQL DBMS was used for storing all our data: artists, songs, ids
 
 3. AWS RDS was used for hosting and managing our postgres database.
 
-4. SQL was used for creating views off of the data that is loaded
+4. SQL was used to query and create reports off the datasets loaded in PostgresQL. 
 
 5. Docker was used to containerize our pipeline
 
@@ -75,12 +75,30 @@ For both pipelines, the extraction breakdown was as follow:
 3. Get audio features - from the track_id, get the audio features associated with each track.
 4. Get track details - from the track_id, get the track details including popularity.
 
+**Incremental Extraction** 
+A notable challenge, was that Spotify did not offer an API endpoint that supported timestamps of the releases on a given date. The API endpoint in particularly only supported an offset to get the X(X=number of determined) previous releases.
+We landed on two notable solutions:
+
+1) We did an incremental extraction by comparing the track_ids extracted from the API to list of track_ids that were already loaded into the database. Track_IDs that were not previously loaded to database, the pipeline would proceed to run two additional API calls for each track, to gather the audio features and track details. See attached screenshot for the code to accomplish this
+
+```python
+# Filter to find only new IDs
+new_ids = [id_ for id_ in source_ids if id_ not in existing_ids]  # Find new IDs
+new_ids = [f"'{id_}'" for id_ in new_ids]  # Quote the string IDs```
+
+3) Because the API endpoint, supported an offset to get X = number of latest releases, a timestamp was inserted to prove the incremental extract worked.
+
 
 
 **Transform**
 
 
 **Load**
+
+For the SQL Pipeline, to prove incremental extraction worked, a timestamp in column "updated_at" was included when loading the data.
+
+
+
 
 ## Breakdown of tasks
 
