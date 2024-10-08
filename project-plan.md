@@ -77,11 +77,11 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 | Task                                  | Due Date   | Status   |
 |---------------------------------------|------------|----------|
-| Extract Data                          | 09-28-2024 |          |
+| Extract Data                          | 09-28-2024 | Complete |
 | • Static Extraction                   | 09-28-2024 |          |
 | • Live Extraction                     | 09-28-2024 | Complete |
 | • Full Extract                        | 09-28-2024 | Complete |
-| • Incremental Extract                 | 09-28-2024 |          |
+| • Incremental Extract                 | 09-28-2024 | Complete |
 | Transform Data                        | 09-30-2024 | Complete |
 | • 3 Transformation Techniques         | 09-30-2024 | Complete |
 | • 5 Transformation Techniques         | 09-30-2024 | Complete |
@@ -110,9 +110,9 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 |---------------------------------------|------------|----------|
 | Write pipeline logs to database       | 10-04-2024 | Complete |
 | Implement unit tests                  | 10-05-2024 | Complete |
-| Documentation                         | 10-07-2024 |          |
-| • Python docstrings and comments      | 10-07-2024 |          |
-| • Project markdown documentation      | 10-07-2024 |          |
+| Documentation                         | 10-07-2024 | Complete |
+| • Python docstrings and comments      | 10-07-2024 | Complete |
+| • Project markdown documentation      | 10-07-2024 | Complete |
 | Presentation                          | 10-07-2024 |          |
 | • Project context and goals           | 10-07-2024 |          |
 | • Datasets selected                   | 10-07-2024 |          |
