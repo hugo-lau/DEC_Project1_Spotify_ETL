@@ -3,6 +3,14 @@ This repository contains the ETL process on Spotify Web API
 
 
 # Setting up the enironment
+
+## Cloning the project
+```
+> git init
+> git clone https://github.com/vedaBommareddy23/DE-bootcamp-project1.git
+> git pull
+```
+
 ## Virtual Environment (conda)
 1. Open the terminal and create a conda environment
 ```
