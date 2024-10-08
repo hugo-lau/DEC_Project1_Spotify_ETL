@@ -86,7 +86,7 @@ We landed on two notable solutions:
 # Filter to find only new IDs
 new_ids = [id_ for id_ in source_ids if id_ not in existing_ids]  # Find new IDs
 new_ids = [f"'{id_}'" for id_ in new_ids]  # Quote the string IDs
-'''
+```
 
 3) Because the API endpoint, supported an offset to get X = number of latest releases, a timestamp was inserted to prove the incremental extract worked.
 
