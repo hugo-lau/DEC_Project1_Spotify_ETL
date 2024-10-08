@@ -118,6 +118,75 @@ Here are some of the challenges and lessons encountered during the project:
 1. Python was the much better choice in doing the extraction and loading, especially in dealing with the data structure of Spotify API. However, due to python transformation being in memory. It's not scalable in doing multiple transformations.
 2. SQL was much easier and better for transforming information, allowing us to quickly do queries of key information and transform them accordingly, making multiple transformations at once. However, extractions were a lot more difficult esp with the nature of Spotify data.
 
+
+# Setting up the enironment
+
+## Cloning the project
+```
+> git init
+> git clone https://github.com/vedaBommareddy23/DE-bootcamp-project1.git
+> git pull
+```
+
+## Virtual Environment (conda)
+1. Open the terminal and create a conda environment
+```
+> conda create -n project1 python=3.9
+```
+
+2. Activate the conda env
+```
+> conda activate project1
+```
+
+3. Install the requirements in project1 conda environment
+```
+> pip install -r requirements.txt
+```
+
+4. entry point for pythonetl 
+```
+> cd app
+> python -m etl_project.pipelines.spotify
+```
+
+5. entry point for sqletl
+```
+> cd app2
+> python extract_load.py
+```
+
+6. docker build and run
+```
+ -- Container#1 - python-etl (full-extract)
+> docker build --platform=linux/amd64 -t project1_pythonetl .
+> docker run --env-file .env project1_pythonetl:latest
+
+ -- Container#2 - sql-etl(incremental extract)
+> docker build --platform=linux/amd64 -t project1_sqletl .
+> docker run --env-file .env project1_ project1_sqletl:latest
+```
+## AWS Screenshots
+
+**Dataset loaded in RDS**
+
+![project1_schedule](images/Loaded_to_RDS_Database.jpg)
+
+**Scheduled Task in ECS**
+![project1_schedule](images/ECS_Screenshot_of_scheduled_task_in_ECS.jpg)
+
+**Container Image in ECR**
+![project1_schedule](images/ECR_Image_Screenshot.jpg)
+
+**IAM Created Role**
+![project1_schedule](images/IAM_Role_Created.jpg)
+
+S3 Bucket containing env file
+![project1_schedule](images/S3_Bucket_hosting_Environable_File.jpg)
+
+
+
+
 ## Breakdown of tasks
 
 **Phase 1 - Project Planning**
@@ -183,20 +252,3 @@ Here are some of the challenges and lessons encountered during the project:
 
 ![project1_schedule](images/project1_schedule.png)
 
-## AWS Screenshots
-
-**Dataset loaded in RDS**
-
-![project1_schedule](images/Loaded_to_RDS_Database.jpg)
-
-**Scheduled Task in ECS**
-![project1_schedule](images/ECS_Screenshot_of_scheduled_task_in_ECS.jpg)
-
-**Container Image in ECR**
-![project1_schedule](images/ECR_Image_Screenshot.jpg)
-
-**IAM Created Role**
-![project1_schedule](images/IAM_Role_Created.jpg)
-
-S3 Bucket containing env file
-![project1_schedule](images/S3_Bucket_hosting_Environable_File.jpg)
