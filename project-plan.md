@@ -124,3 +124,12 @@ Following is the descriptive solution architecture diagram for implementing ETL 
 
 
 ![project1_schedule](images/project1_schedule.png)
+
+## AWS Screenshots
+
+Datainstance loaded into RDS
+
+![project1_schedule](images/Screenshot of Database in RDS.jpg)
+
+Docker Container Loaded in ECR
+
