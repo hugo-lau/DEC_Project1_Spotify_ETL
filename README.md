@@ -110,6 +110,14 @@ There were more transformative opportunities to provide more data insights espec
 ## Limitations and Lessons Learned
 Here are some of the challenges and lessons encountered during the project:
 > - **O.Auth2.0** - Spotify APi uses O-Auth2.0 authentication, which involves a two-step process where using client credentials, Spotify authorization server provides an access token which expires in 60 mins. As best practice, the refresh token should be retrieved to avoid exposing clients secret key but due to technical debt, we did not obtain the refresh token. The access token is used for doing the API calls.
+
+Encode Client Credentials into base-64
+```python
+auth_string = f"{client_id}:{client_secret}"
+auth_bytes = auth_string.encode("utf-8")
+auth_base64 = base64.b64encode(auth_bytes).decode("utf-8")
+````
+
 > - **Incremental Extraction** - due to the nature of the API endpoint, the offset of latest releases on a periodically updated live dataset, meant we needed to find a way to find a solution for incremental extraction and proved that it work. The later was easily solved by inserting a timestamp. For incremental, finding a column anchor was difficult as release dates and timestamp was not feasible. Ultimately, we had to find a way to compare the track_ids to determined which ones needed to be extracted. 
 > - **Data Schema** - the nexted data structure and list of dictionaries meant more exploration and work was required to extract information from data columns. 
 > - **API Rate Limit** - related to the extraction, we encountered a few 429 rate limits, due to our pipeline solution. This made incremental extraction important to limit the number of API calls on track information.
