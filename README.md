@@ -1,10 +1,10 @@
 # DEC - Project 1
 
-This project aims to create a pipeline solution that extract from a live dataset that periodically updates, and load it to a relational database, to form an analytical database to help answer questions about music trends. The different containizered ELT packages will be deployed on AWS cloud.
+This was my bootcamp project aims to create a pipeline solution that extract from a live dataset that periodically updates, and load it to a relational database, to form an analytical database to help answer questions about music trends. The different containizered ELT packages will be deployed on AWS cloud.
 
 ## Objective
 
-The objective of our project is to expore the different ETL pipelines that can provide analytical datasets from the Spotify API. The focus will be on new music releases and their correlation between tracks audio features and popularity, . This will facilitate deeper insights into music trends and preferences.
+The focus will be running the multiple extractions needed to gather correlations between new music releases, the audio features and popularity.
 
 ## Consumers
 The primary users of our datasets are Data Analysts, Music Industry Professionals, and Marketers. They will access the data through a web interface or a dashboard that allows for easy exploration of trends and features related to new music releases.
@@ -60,6 +60,16 @@ The solution will deploy two containers, one supporting a python pipeline and an
 #Initial ER Diagram of the database
 ![images/Spotify_ERD.png](images/Spotify_ERD.png)
 
+Update Oct 12, 2024: Based on feedback from the presentation, the following two key changes were made:
+1) Incremental extract based on album_id instead of track_id. 
+>- Checking on track_id, led a situation where application was running more code than necessarily, and doing more unnecessarily API callls, esp given Spotify API rate limit.
+The general assumption is that albums don't change, and if they do change, they will count as a "new release".
+2) One pipeline instead of two pipelines
+as a learning, we explored both pipelines. Taking lessons learned, the code was streamlined into one pipeline, where python would handle the incremental extract and load into a postgresql database, while sql would handle the transform.
+This worked much better as python was better equipped to handle the nested data structures that spotify
+
+
+
 To explore and apply the techniques learned in the lessons, two container images were created. 
 One was a python pipeline, that did was a full extract and served as our MVP. 
 The other was a sql peipeline, which did an incremental extract.
@@ -72,6 +82,8 @@ For both pipelines, the extraction breakdown was as follow:
 4. Get track details - from the track_id, get the track details including popularity.
 
 **Incremental Extraction** 
+
+
 A notable challenge, was that Spotify did not offer an API endpoint that supported timestamps of the releases on a given date. The API endpoint in particularly only supported an offset to get the X(X=number of determined) previous releases.
 We landed on two notable solutions:
 
@@ -103,6 +115,7 @@ df_track_popularity['album.artists'] = df_track_popularity['album.artists'].appl
 To delimit data coming from two different pipelines, python and sql pipeline each had their own databases. From SQL pipeline perspective, the python database function as the "source" database for its extraction purposes.
 
 **Transform**
+
 For both pipeline, the tables for audio features and track details were merged. Afterwards, certain columns selected, and re-ordered based on certain criterias such as artist name, song, release date and popularity.
 There were more transformative opportunities to provide more data insights especially with SQL Templates.
 
