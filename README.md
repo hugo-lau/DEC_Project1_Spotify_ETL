@@ -60,13 +60,13 @@ The solution will deploy two containers, one supporting a python pipeline and an
 #Initial ER Diagram of the database
 ![images/Spotify_ERD.png](images/Spotify_ERD.png)
 
-Update Oct 12, 2024: Based on feedback from the presentation, the following two key changes were made:
-1) Incremental extract based on album_id instead of track_id. 
->- Checking on track_id, led a situation where application was running more code than necessarily, and doing more unnecessarily API callls, esp given Spotify API rate limit.
+**Update Oct 12, 2024**
+Based on feedback from the presentation, the following two key changes were made:
+>- Incremental extract based on album_id instead of track_id. 
+Checking on track_id, led a situation where application was running more code than necessarily, and doing more unnecessarily API callls, esp given Spotify API rate limit.
 The general assumption is that albums don't change, and if they do change, they will count as a "new release".
-2) One pipeline instead of two pipelines
-as a learning, we explored both pipelines. Taking lessons learned, the code was streamlined into one pipeline, where python would handle the incremental extract and load into a postgresql database, while sql would handle the transform.
-This worked much better as python was better equipped to handle the nested data structures that spotify
+>- as a learning, we explored both python and sql pipelines. Taking lessons learned, the code was streamlined into one pipeline, where python would handle the incremental extract and load into a postgresql database, while sql would handle the transform.
+This worked much better as python was better equipped to handle the nested data structures that spotify while transforms were a lot more effortless with sql transform.
 
 
 
