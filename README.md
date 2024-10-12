@@ -7,7 +7,8 @@ This was my bootcamp project aims to create a pipeline solution that extract fro
 The focus will be running the multiple extractions needed to gather correlations between new music releases, the audio features and popularity.
 
 ## Consumers
-The primary users of our datasets are Data Analysts, Music Industry Professionals, and Marketers. They will access the data through a web interface or a dashboard that allows for easy exploration of trends and features related to new music releases.
+The primary users could Data Analysts, Music Industry Professionals, and Marketers, who can explore the correlation of popularity, and audio features of new releases.
+They can check more new releases as needed.
 
 ## Questions
 
