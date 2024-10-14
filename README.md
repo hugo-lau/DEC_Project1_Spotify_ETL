@@ -36,7 +36,7 @@ The spotify API uses a RESTFUL API. Four API calls were used:
 Following is a high-level solution architecture diagram for implementing ETL on Spotify API.
 The solution will deploy two containers, one supporting a python pipeline and another supporting sql.
 
-![images/Solution_Architecture.png](images/Solution_Architecture.png)
+![images/![images/Project1-Solution-Architecture.jpg](images/Project1-Solution-Architecture.jpg)
 
 1. Python, Jinja, Pandas was used for:
     1. Extracting the data about artists, songs, albums, new releases. 
