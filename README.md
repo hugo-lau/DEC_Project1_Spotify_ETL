@@ -146,7 +146,7 @@ auth_base64 = base64.b64encode(auth_bytes).decode("utf-8")
 ## Cloning the project
 ```
 > git init
-> git clone https://github.com/vedaBommareddy23/DE-bootcamp-project1.git
+> git clone git@github.com:hugo-lau/spotify-newalbums-analysis.git
 > git pull
 ```
 
@@ -178,6 +178,13 @@ auth_base64 = base64.b64encode(auth_bytes).decode("utf-8")
 > python extract_load.py
 ```
 
+6. entry point for finalized pipeline
+7. 
+```
+> cd app3
+> python -m etl_project.pipelines.spotify
+```
+
 6. docker build and run
 ```
  -- Container#1 - python-etl (full-extract)
@@ -187,7 +194,14 @@ auth_base64 = base64.b64encode(auth_bytes).decode("utf-8")
  -- Container#2 - sql-etl(incremental extract)
 > docker build --platform=linux/amd64 -t project1_sqletl .
 > docker run --env-file .env project1_ project1_sqletl:latest
+
+ -- Container#3 - python-sql etl(incremental extract)
+> docker build --platform=linux/amd64 -t pythonsql .
+> docker run --env-file .env pythonsql:latest
 ```
+
+
+
 ## AWS Screenshots
 
 **Dataset loaded in RDS**
