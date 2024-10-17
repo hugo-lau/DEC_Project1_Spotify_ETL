@@ -1,6 +1,6 @@
 # DEC - Project 1
 
-This was my bootcamp project aims to create a pipeline solution that extract from a live dataset that periodically updates, and load it to a relational database, to form an analytical database to help answer questions about music trends. The different containizered ELT packages will be deployed on AWS cloud.
+This was my first bootcamp project aimed to explore the different pipeline solutions to extract from a live dataset that periodically updates, and load it to a relational database, to form an analytical database to help answer questions about music trends. The python code explores the two different libraries, pandas and jinja to accomplish this.
 
 ## Objective
 
@@ -10,10 +10,7 @@ The focus will be running the multiple extractions needed to gather correlations
 The primary users could Data Analysts, Music Industry Professionals, and Marketers, who can explore the correlation of popularity, and audio features of new releases.
 They can check more new releases as needed.
 
-## Questions
-
-What questions are you trying to answer with your data? How will your data support your users?
-
+Some questions to be answered in this analysis include:
 Example:
 > - What are the most popular new releases each week?
 > - How do audio features (e.g., danceability, energy) correlate with track popularity?
@@ -34,7 +31,7 @@ The spotify API uses a RESTFUL API. Four API calls were used:
 ## Solution architecture
 
 Following is a high-level solution architecture diagram for implementing ETL on Spotify API.
-The solution will deploy two containers, one supporting a python pipeline and another supporting sql.
+The solution will deploy two containers, one relying on the pandas library while another using jinja. 
 
 ![images/Project1-Solution-Architecture.jpg](images/Project1-Solution-Architecture.jpg)
 
@@ -72,8 +69,8 @@ This worked much better as python was better equipped to handle the nested data 
 
 
 To explore and apply the techniques learned in the lessons, two container images were created. 
-One was a python pipeline, that did was a full extract and served as our MVP. 
-The other was a sql peipeline, which did an incremental extract.
+One was a pipeline that relied on the pandas library, that did was a full extract and served as our MVP. 
+The other was a sql peipeline which relied on the jinja library, which did an incremental extract.
 
 **Extraction**
 For both pipelines, the extraction breakdown was as follow:
