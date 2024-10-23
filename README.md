@@ -1,14 +1,10 @@
 # DEC - Project 1
 
-This was my first bootcamp project aimed to explore the different pipeline solutions to extract from a live dataset that periodically updates, and load it to a relational database, to form an analytical database to help answer questions about music trends. The python code explores the two different libraries, pandas and jinja to accomplish this.
-
-## Objective
-
-The focus will be running the multiple extractions needed to gather correlations between new music releases, the audio features and popularity.
+This was my first bootcamp project aimed to explore the different pipeline solutions to extract from a live dataset that periodically updates, and load it to a relational database, to form an analytical database to correlate popularity and audio features of new releases.
+The finalized pipeline solution is containerized to run on AWS, and perform several API calls to gather the required data for analysis.
 
 ## Consumers
-The primary users could Data Analysts, Music Industry Professionals, and Marketers, who can explore the correlation of popularity, and audio features of new releases.
-They can check more new releases as needed.
+The primary users could Data Analysts, Music Industry Professionals, and Marketers concerning new releases.
 
 Some questions to be answered in this analysis include:
 Example:
@@ -22,9 +18,9 @@ Example:
 |----------------------|-------------|-------------------------------------------|
 | Spotify New Releases  | REST API   | [Spotify API Documentation](https://developer.spotify.com/documentation/web-api/) |
 
-The spotify API uses a RESTFUL API. Four API calls were used:
+The spotify API uses a RESTFUL API. Four API calls were used. The last three are only utilized if checks against an album table shows there are new albums to do analysis on:
 > - Get new releases – identify latest releases
-> - Get album tracks – get tracks inside each released album
+> - Get album tracks – get tracks inside each released album 
 > - Get track audio features – fetch audio features associated with each track
 > - Get track details – get details of track including popularity
 
@@ -32,6 +28,15 @@ The spotify API uses a RESTFUL API. Four API calls were used:
 
 Following is a high-level solution architecture diagram for implementing ETL on Spotify API.
 The solution will deploy two containers, one relying on the pandas library while another using jinja. 
+In oct 12, the solution was streamlined so that extraction and load was done using pandas while transforms through jinja SQL templates using incremental extraction.
+This solution is containerized to run on AWS.
+
+High-level sequence is as follows as of Oct 12
+1. API call to extract N number of new releases.
+2. Run a check against a table of existing albums already extracted. If there are new albums to be extracted, proceed otherwise stop, to prevent unnecessary API calls.
+3. Grab the list of tracks for each album.
+4. For each track song, grab the audio features and track details including popularity of songs.
+5. 
 
 ![images/Project1-Solution-Architecture.jpg](images/Project1-Solution-Architecture.jpg)
 
