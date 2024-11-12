@@ -1,12 +1,18 @@
 # DEC - Project 1
 
-This was my first bootcamp project aimed to explore the different pipeline solutions to extract from a live dataset that periodically updates, and load it to a relational database, to form an analytical database to correlate popularity and audio features of new releases.
-The finalized pipeline solution is containerized to run on AWS, and perform several API calls to gather the required data for analysis.
+This was my first ever coding project, aiming to build a ETL (Extract, Transform, Load) pipeline to ingest data from Spotify API, and load it into a Postgres database hosted on AWS RDS.
+
+The pipeline is designed to extract data to examine the correlation between popularity and audio features of recently released albums including details of tracks and the artists. It is designed to run on AWS using Docker containers and Amazon ECS for orchestration.
+
+As a first time coder, I explored building two pipelines, one based on Panda library, while another based on the Jinja one. It was a first-hand lesson in understanding the pros and cons of each approach, so after the project, I've added a third pipeline, one specifically where panda was used to extract the sometimes complex data structure, and leveraging Jinja to transform data. 
+
+I would say one of the most rewarding and challenging aspects of this first project, was exploring how to do incremental extract against how Spotify API data inherently presented itself to limit unnecessarily API calls, and navigating the complex data structure of some of Spotify data-types.
+
+A special thanks and pleasure working with my project partner Veda, as I navigated my first time building this project.
 
 ## Consumers
-The primary users could Data Analysts, Music Industry Professionals, and Marketers concerning new releases.
-
-Some questions to be answered in this analysis include:
+The primary users could run this dataset periodically to get insights into the latest albums.
+Some questions to be answered includes:
 Example:
 > - What are the most popular new releases each week?
 > - How do audio features (e.g., danceability, energy) correlate with track popularity?
@@ -141,7 +147,7 @@ auth_base64 = base64.b64encode(auth_bytes).decode("utf-8")
 > - **Python vs SQL Pipelines** In exploring the two pipeline solutions, a few things were discovered
 1. Python was the much better choice in doing the extraction and loading, especially in dealing with the data structure of Spotify API. However, due to python transformation being in memory. It's not scalable in doing multiple transformations.
 2. SQL was much easier and better for transforming information, allowing us to quickly do queries of key information and transform them accordingly, making multiple transformations at once. However, extractions were a lot more difficult esp with the nature of Spotify data.
-
+> - **Future Improvements** Having done this a first time, i think a few obvious things, the most obvious, is probably adding something along a cronjob to run this script every 6-10 hours to see if there been release of new albums would be one way to go. 
 
 # Setting up the enironment
 
